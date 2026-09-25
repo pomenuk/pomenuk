@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propuesta Migliorisi Digital</title>
+<meta name="description" content="Propuesta de modernización de la plataforma inmobiliaria y del portal de Prensa de Migliorisi, con estrategia SEO y GEO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213a; --ink-2:#3f4b64; --ink-3:#6b7690;
+  --bg:#fbfaf7; --paper:#ffffff; --bg-2:#f3f0e9; --line:#e4dfd4;
+  --brand:#13294b; --brand-soft:#e7ecf5; --accent:#c4552d; --accent-soft:#f8e6dd;
+  --ok:#2f7d5b; --ok-soft:#e1f0e8; --warn:#a4661b;
+  --shadow:0 1px 2px rgba(20,33,58,.05),0 10px 30px rgba(20,33,58,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#eef1f7; --ink-2:#c1c8d6; --ink-3:#94a0b8;
+    --bg:#0e1522; --paper:#141d2e; --bg-2:#1a2438; --line:#27334b;
+    --brand:#a9c0ea; --brand-soft:#1c2a45; --accent:#ef8a60; --accent-soft:#3a2419;
+    --ok:#6cc79c; --ok-soft:#173327; --warn:#e0a458;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#eef1f7; --ink-2:#c1c8d6; --ink-3:#94a0b8;
+  --bg:#0e1522; --paper:#141d2e; --bg-2:#1a2438; --line:#27334b;
+  --brand:#a9c0ea; --brand-soft:#1c2a45; --accent:#ef8a60; --accent-soft:#3a2419;
+  --ok:#6cc79c; --ok-soft:#173327; --warn:#e0a458;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+p{margin:0 0 14px}
+
+/* Cover */
+.cover{background:#0f213d;color:#fff;position:relative;overflow:hidden}
+.cover svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.cover .wrap{position:relative;padding:72px 24px 64px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#f0b89f}
+.cover h1{font-size:clamp(36px,6vw,62px);margin:16px 0 18px;max-width:760px}
+.cover .lead{font-size:19px;color:#d3dcec;max-width:640px}
+.cover .meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18);font-size:14px;color:#c1cbe0}
+.cover .meta b{display:block;color:#fff;font-weight:600;font-size:15px}
+
+/* TOC */
+.toc{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+.toc a{white-space:nowrap;color:var(--ink-2);text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 12px;border-radius:8px}
+.toc a:hover{background:var(--bg-2);color:var(--ink)}
+
+/* Sections */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.num{font-family:Fraunces,serif;color:var(--accent);font-size:15px;font-weight:600;letter-spacing:.04em}
+section h2{font-size:clamp(28px,3.6vw,38px);margin:6px 0 18px}
+section h3{font-size:21px;margin:0 0 10px}
+.intro{font-size:18px;color:var(--ink-2);max-width:760px}
+.muted{color:var(--ink-3)}
+
+/* Callouts */
+.callout{background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:0 12px 12px 0;padding:18px 22px;margin:22px 0;color:var(--ink)}
+.callout.accent{background:var(--accent-soft);border-color:var(--accent)}
+.callout.ok{background:var(--ok-soft);border-color:var(--ok)}
+.callout p:last-child{margin:0}
+
+/* Cards / grids */
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.card h3{font-family:Inter;font-size:16.5px;font-weight:700;margin-bottom:6px}
+.card p{color:var(--ink-2);font-size:14.5px;margin:0}
+.ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);margin-bottom:12px}
+.ic svg{width:19px;height:19px}
+
+.site{display:flex;flex-direction:column;gap:12px}
+.site .url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;background:var(--bg-2);padding:5px 10px;border-radius:7px;align-self:flex-start;color:var(--ink)}
+.site ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px}
+.site ul li{margin:5px 0}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.badge.b{background:var(--brand-soft);color:var(--brand)}
+.badge.a{background:var(--accent-soft);color:var(--accent)}
+.badge.o{background:var(--ok-soft);color:var(--ok)}
+
+/* Findings table */
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-weight:700;background:var(--bg-2)}
+.tbl{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;overflow-x:auto}
+td.x{color:var(--ink-2)}
+.cmp td:nth-child(2){color:var(--ink-3)}
+.cmp td:nth-child(3){color:var(--ink);font-weight:500}
+.yes{color:var(--ok);font-weight:700}
+
+/* Prototype */
+.browser{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px rgba(20,33,58,.16);background:var(--paper);margin-top:26px}
+.browser .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.browser .dot{width:11px;height:11px;border-radius:50%;background:#e56b5b}
+.browser .dot:nth-child(2){background:#e7b54d}.browser .dot:nth-child(3){background:#5fbf6c}
+.browser .addr{flex:1;margin-left:10px;background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:4px 12px;font-size:12.5px;color:var(--ink-3);font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser iframe{display:block;width:100%;height:720px;border:0;background:#fff}
+.proto-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.proto-tabs button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;font:500 14px Inter,sans-serif;cursor:pointer}
+.proto-tabs button.on{background:var(--brand);color:var(--paper);border-color:var(--brand)}
+.proto-open{display:inline-flex;gap:8px;align-items:center;margin-top:16px;font-weight:600;text-decoration:none}
+
+/* Stages */
+.stage{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin:26px 0;overflow:hidden;box-shadow:var(--shadow)}
+.stage .hd{display:flex;gap:18px;align-items:flex-start;padding:26px 28px;border-bottom:1px solid var(--line)}
+.stage .n{flex:none;width:54px;height:54px;border-radius:14px;background:var(--brand);color:var(--paper);display:grid;place-items:center;font-family:Fraunces,serif;font-size:24px;font-weight:600}
+.stage.opt .n{background:var(--bg-2);color:var(--brand);border:2px dashed var(--brand)}
+.stage .hd h3{font-size:24px;margin:2px 0 6px}
+.stage .hd p{margin:0;color:var(--ink-2)}
+.stage .bd{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+.stage .col{padding:24px 28px}
+.stage .col + .col{border-left:1px solid var(--line);background:color-mix(in srgb,var(--ok-soft) 45%,var(--paper))}
+.stage h4{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)}
+.checks{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;font-size:14px;color:var(--ink-2)}
+.checks li{position:relative;padding-left:20px}
+.checks li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:3px;background:var(--accent);opacity:.8}
+.gains{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+.gains li{display:flex;gap:10px}
+.gains li::before{content:"✓";color:var(--ok);font-weight:800;flex:none}
+.stage .obj{padding:16px 28px;background:var(--bg-2);border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
+.stage .obj b{color:var(--ink)}
+
+/* Entity diagram */
+.diagram{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;margin:22px 0}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram text{font-family:Inter,sans-serif}
+
+/* Benefits */
+.benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+.benefit{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
+.benefit b{display:block;font-size:16px;margin-bottom:6px}
+.benefit span{font-size:14px;color:var(--ink-2)}
+.benefit .ic{margin-bottom:10px}
+
+/* Before/After */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.ba .card h3{display:flex;align-items:center;gap:8px}
+.ba ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-2)}
+.ba ul li{margin:6px 0}
+.ba .after{border-color:color-mix(in srgb,var(--ok) 45%,var(--line));background:color-mix(in srgb,var(--ok-soft) 50%,var(--paper))}
+
+/* Investment */
+.invest{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
+.inv{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px;position:relative}
+.inv .st{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);font-weight:700}
+.inv h3{font-family:Inter;font-size:15.5px;font-weight:700;line-height:1.35}
+.inv .price{font-family:Fraunces,serif;font-size:28px;font-weight:600;color:var(--brand);margin-top:auto;padding-top:10px}
+.inv .price small{font-family:Inter;font-size:13px;color:var(--ink-3);font-weight:500}
+.inv .sub{font-size:13px;color:var(--ink-3)}
+.inv.opt{border-style:dashed}
+.inv .pill{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;letter-spacing:.04em}
+.value-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+.value-bar .card{box-shadow:none}
+
+/* Timeline */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:26px;position:relative}
+.flow .step{padding:0 14px 0 0;position:relative}
+.flow .step::before{content:"";position:absolute;top:17px;left:36px;right:0;height:2px;background:var(--line)}
+.flow .step:last-child::before{display:none}
+.flow .dot{width:36px;height:36px;border-radius:50%;background:var(--brand);color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:14px;position:relative;z-index:1}
+.flow .step.opt .dot{background:var(--paper);color:var(--brand);border:2px dashed var(--brand)}
+.flow b{display:block;margin:12px 0 4px;font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-3)}
+
+.next{counter-reset:n;list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+.next li{counter-increment:n;display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.next li::before{content:counter(n);flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700}
+
+footer{padding:40px 0 60px;color:var(--ink-3);font-size:13.5px}
+
+@media (max-width:860px){
+  .g3,.benefits,.value-bar{grid-template-columns:1fr 1fr}
+  .invest{grid-template-columns:1fr 1fr}
+  .stage .bd{grid-template-columns:1fr}
+  .stage .col + .col{border-left:0;border-top:1px solid var(--line)}
+  .flow{grid-template-columns:1fr 1fr;gap:22px}
+  .flow .step::before{display:none}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .cover .wrap{padding:52px 16px 44px}
+  .g2,.g3,.benefits,.value-bar,.ba,.invest{grid-template-columns:1fr}
+  .checks{grid-template-columns:1fr}
+  .stage .hd,.stage .col,.stage .obj{padding-left:18px;padding-right:18px}
+  .stage .hd{flex-direction:column;gap:12px}
+  .browser iframe{height:640px}
+  section{padding:48px 0}
+}
+@media print{
+  .toc,.proto-tabs,.browser{display:none}
+  section{break-inside:auto;padding:36px 0}
+  .stage,.card,.inv{break-inside:avoid;box-shadow:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <svg class="bg" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b3a6b"/><stop offset="1" stop-color="#0b1629"/></linearGradient></defs>
+    <rect width="1200" height="520" fill="url(#cg)"/>
+    <g stroke="#ffffff" stroke-opacity=".07" fill="none">
+      <path d="M0 400 L1200 330"/><path d="M0 300 L1200 230"/><path d="M0 200 L1200 130"/>
+      <path d="M200 0 L140 520"/><path d="M480 0 L420 520"/><path d="M760 0 L700 520"/><path d="M1040 0 L980 520"/>
+    </g>
+    <g fill="#f0b89f"><circle cx="880" cy="170" r="5" opacity=".9"/><circle cx="990" cy="260" r="4" opacity=".7"/><circle cx="770" cy="300" r="4" opacity=".7"/><circle cx="1080" cy="140" r="3" opacity=".6"/></g>
+    <g stroke="#f0b89f" stroke-opacity=".35"><path d="M880 170 L990 260 L770 300 Z"/><path d="M880 170 L1080 140"/></g>
+  </svg>
+  <div class="wrap">
+    <div class="kicker">Propuesta de modernización digital</div>
+    <h1>Migliorisi, preparada para la próxima generación de búsquedas</h1>
+    <p class="lead">Plataforma inmobiliaria propia, portal de Prensa modernizado y una estrategia SEO + GEO que convierte 70 años de trayectoria en visibilidad, consultas y operaciones.</p>
+    <div class="meta">
+      <div><b>Preparado para</b>Migliorisi Propiedades</div>
+      <div><b>Sitios analizados</b>migliorisi.com.ar · prensa.migliorisi.com.ar</div>
+      <div><b>Fecha</b>Septiembre 2026</div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Índice">
+  <div class="wrap">
+    <a href="#resumen">Resumen</a>
+    <a href="#analisis">Análisis</a>
+    <a href="#prototipo">Prototipo</a>
+    <a href="#etapas">Etapas</a>
+    <a href="#wordpress">¿Por qué dejar WordPress?</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#inversion">Inversión</a>
+    <a href="#pasos">Próximos pasos</a>
+  </div>
+</nav>
+
+<main>
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="num">01 · Resumen ejecutivo</div>
+    <h2>Una marca con 70 años de historia merece una plataforma a su altura</h2>
+    <p class="intro">Migliorisi tiene algo que ningún portal puede comprar: trayectoria desde 1956, cinco oficinas y un conocimiento profundo de barrios como Villa Crespo, Almagro, Parque Centenario, Palermo y Caballito. Hoy ese capital no se refleja por completo en su presencia digital.</p>
+    <p>La forma en que las personas buscan propiedades está cambiando. Ya no alcanza con aparecer en Google: cada vez más consultas se resuelven en asistentes de inteligencia artificial (ChatGPT, Gemini, Perplexity, las respuestas con IA de Google), que recomiendan inmobiliarias y barrios a partir de información <b>estructurada, clara y confiable</b>. Esto es lo que llamamos <b>GEO</b> (<i>Generative Engine Optimization</i>).</p>
+    <p>Esta propuesta plantea un camino en etapas para que Migliorisi pase de <b>depender de plataformas de terceros</b> a <b>ser dueña de un activo digital propio</b>: rápido, pensado para el celular, optimizado para buscadores y motores de IA, y que conecte propiedades, barrios y contenidos de Prensa en un mismo ecosistema.</p>
+    <div class="g3" style="margin-top:28px">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/></svg></div><h3>Plataforma propia</h3><p>Control total sobre diseño, datos, URLs y evolución. Sin límites de plantillas.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>Visible en Google y en la IA</h3><p>SEO técnico y GEO desde el código, no como un agregado posterior.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Más consultas propias</h3><p>Cada visita orientada a una acción: WhatsApp, visita, tasación.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALISIS -->
+<section id="analisis">
+  <div class="wrap">
+    <div class="num">02 · Análisis de la situación actual</div>
+    <h2>Qué analizamos</h2>
+    <p class="intro">Se relevaron los dos sitios de la marca, su presencia en buscadores y en portales inmobiliarios de terceros.</p>
+    <div class="g2" style="margin-top:22px">
+      <div class="card site">
+        <span class="badge b">Sitio principal</span>
+        <span class="url">https://migliorisi.com.ar/</span>
+        <ul>
+          <li>Buscador de propiedades con listados por operación y tipología (ej.: <code>/listado-de-propiedades/venta/construccion/</code>).</li>
+          <li>Títulos de página genéricos (ej.: <i>“Inmobiliaria Migliorisi | Búsqueda de propiedades”</i>) que no aprovechan barrio, tipo de propiedad ni operación.</li>
+          <li>Sin páginas de barrio que funcionen como destino de búsqueda, a pesar de ser la mayor fortaleza de la marca.</li>
+          <li>Gran parte del inventario (+900 avisos) se encuentra y se consulta desde portales de terceros, que capturan esa búsqueda.</li>
+        </ul>
+      </div>
+      <div class="card site">
+        <span class="badge a">Portal de Prensa</span>
+        <span class="url">https://prensa.migliorisi.com.ar/</span>
+        <ul>
+          <li>Desarrollado en WordPress, en un subdominio separado del sitio principal.</li>
+          <li>Buen volumen de contenido de mercado (precio del m², mercado inmobiliario, real estate) con potencial SEO real.</li>
+          <li>Páginas de etiquetas indexadas y paginadas (ej.: <code>/tag/migliorisi-propiedades/page/4/</code>) que compiten con los propios artículos.</li>
+          <li>Nombres y URLs inconsistentes (“Migliorisi Prensa” / “Prensa Migliorisi”; slugs como <code>/la-mercado-inmobiliario-2025/</code>).</li>
+          <li>Los artículos no enlazan a propiedades ni barrios: el lector no tiene un camino hacia la consulta.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px">Hallazgos principales</h3>
+    <div class="tbl" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Hallazgo</th><th>Impacto</th><th>Cómo lo resuelve la propuesta</th></tr></thead>
+        <tbody>
+          <tr><td><b>Autoridad dividida</b> entre dominio y subdominio</td><td class="x">Google trata ambos sitios casi como independientes; el valor de Prensa no potencia a las propiedades.</td><td class="x">Etapas 2 y 3: integración de Prensa y arquitectura semántica común.</td></tr>
+          <tr><td><b>Sin páginas por barrio</b></td><td class="x">Se pierden búsquedas como “departamentos en venta en Villa Crespo”.</td><td class="x">Etapa 1: barrios y zonas como páginas propias con contenido y datos.</td></tr>
+          <tr><td><b>Metadata genérica</b></td><td class="x">Menor relevancia y menor tasa de clic en resultados.</td><td class="x">Etapa 1: títulos, descripciones y URLs dinámicas por propiedad y búsqueda.</td></tr>
+          <tr><td><b>Sin datos estructurados</b> completos</td><td class="x">Buscadores y motores de IA no “entienden” propiedades, precios, ubicación ni autoría.</td><td class="x">Etapas 1–3: Schema.org para inmobiliaria, ofertas, artículos, lugares y FAQ.</td></tr>
+          <tr><td><b>Contenido desconectado</b> de la conversión</td><td class="x">Lectores de Prensa que no llegan a consultar.</td><td class="x">Etapa 3: interlinking Prensa ↔ Barrios ↔ Propiedades.</td></tr>
+          <tr><td><b>Dependencia de portales</b></td><td class="x">Costo por publicación y consultas compartidas con la competencia.</td><td class="x">Todas las etapas: canal propio de captación de consultas.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:14px">Nota: este relevamiento es preliminar. La auditoría técnica completa (rendimiento, indexación, Core Web Vitals, inventario total de URLs) forma parte de la Etapa 1.</p>
+  </div>
+</section>
+
+<!-- PROTOTIPO -->
+<section id="prototipo">
+  <div class="wrap">
+    <div class="num">03 · Prototipo de visualización</div>
+    <h2>Así podría verse la nueva migliorisi.com.ar</h2>
+    <p class="intro">Preparamos un prototipo navegable para que puedan ver y recorrer la experiencia propuesta. Pueden usar el buscador, abrir fichas, entrar a un barrio o leer una nota de Prensa.</p>
+    <div class="callout accent"><p><b>Tip:</b> activen el botón <b>“Capa SEO/GEO”</b> en el encabezado del prototipo. Resalta, sobre el diseño, dónde se aplica cada optimización: breadcrumbs, datos estructurados, interlinking, CTAs y contenidos citables por IA.</p></div>
+    <div class="proto-tabs" id="ptabs">
+      <button class="on" data-h="inicio">Inicio</button>
+      <button data-h="buscar/venta/villa-crespo">Buscador</button>
+      <button data-h="ficha/1">Ficha de propiedad</button>
+      <button data-h="barrio/villa-crespo">Página de barrio</button>
+      <button data-h="articulo/precio-m2-villa-crespo">Nota de Prensa</button>
+    </div>
+    <div class="browser">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="addr" id="addr">migliorisi.com.ar</span></div>
+      <iframe id="pframe" src="prototipo.html#inicio" title="Prototipo de la nueva plataforma Migliorisi" loading="lazy"></iframe>
+    </div>
+    <a class="proto-open" href="prototipo.html" target="_blank" rel="noopener">Abrir el prototipo en pantalla completa →</a>
+    <div class="g3" style="margin-top:30px">
+      <div class="card"><h3>Pensado para el celular</h3><p>La mayoría de las búsquedas inmobiliarias ocurren en el teléfono. Botón de WhatsApp siempre visible en la ficha.</p></div>
+      <div class="card"><h3>Barrios como protagonistas</h3><p>Cada barrio con su guía, precios de referencia, preguntas frecuentes y propiedades disponibles.</p></div>
+      <div class="card"><h3>Prensa que vende</h3><p>Las notas muestran propiedades del barrio del que hablan y llevan a la consulta.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPAS -->
+<section id="etapas">
+  <div class="wrap">
+    <div class="num">04 · Plan de trabajo</div>
+    <h2>Cuatro etapas, cada una con valor propio</h2>
+    <p class="intro">El proyecto está diseñado para avanzar de forma progresiva. Cada etapa tiene un alcance definido, entrega resultados concretos y puede contratarse de forma independiente, según las prioridades de Migliorisi.</p>
+
+    <div class="flow">
+      <div class="step"><div class="dot">1</div><b>Plataforma principal</b><span>Análisis, arquitectura y modernización</span></div>
+      <div class="step"><div class="dot">2</div><b>Migliorisi Prensa</b><span>Migración desde WordPress</span></div>
+      <div class="step"><div class="dot">3</div><b>Integración SEO + GEO</b><span>Un solo ecosistema semántico</span></div>
+      <div class="step opt"><div class="dot">4</div><b>Evolución continua</b><span>Mensual, opcional</span></div>
+    </div>
+
+    <!-- Etapa 1 -->
+    <div class="stage">
+      <div class="hd"><div class="n">1</div><div><h3>Análisis, arquitectura y modernización de la plataforma</h3><p>Combina el análisis integral con el desarrollo del nuevo sitio principal sobre una arquitectura propia.</p></div></div>
+      <div class="bd">
+        <div class="col"><h4>Incluye</h4>
+          <ul class="checks">
+            <li>Análisis técnico y funcional de la plataforma actual</li>
+            <li>Auditoría SEO y GEO</li>
+            <li>Análisis de URLs, contenidos y estructura</li>
+            <li>Revisión de propiedades, barrios, operaciones y tipologías</li>
+            <li>Diseño de la arquitectura tecnológica</li>
+            <li>Desarrollo/migración hacia una arquitectura propia</li>
+            <li>Buscador y filtros</li>
+            <li>Fichas de propiedades</li>
+            <li>Estructuración de barrios y zonas</li>
+            <li>URLs y metadata dinámicas</li>
+            <li>Datos estructurados Schema.org</li>
+            <li>Breadcrumbs</li>
+            <li>Optimización SEO desde código</li>
+            <li>Optimización GEO</li>
+            <li>Rendimiento y experiencia móvil</li>
+            <li>CTAs y mejoras orientadas a conversión</li>
+            <li>Migración de la información necesaria</li>
+            <li>Planificación de la integración con Prensa</li>
+          </ul>
+        </div>
+        <div class="col"><h4>Qué gana Migliorisi</h4>
+          <ul class="gains">
+            <li>Una plataforma propia, sin ataduras a plantillas ni a limitaciones de terceros.</li>
+            <li>Cada combinación de barrio + operación + tipología se convierte en una página capaz de posicionarse.</li>
+            <li>Carga rápida y experiencia móvil de primer nivel: menos abandono, más consultas.</li>
+            <li>Consultas directas por WhatsApp, formulario o agenda de visita desde cada ficha.</li>
+            <li>Una base técnica preparada para crecer sin tener que rehacer el sitio.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="obj"><b>Objetivo:</b> transformar la plataforma principal de Migliorisi sobre una arquitectura con mayor control técnico, preparada para SEO, GEO, rendimiento y evolución futura.</div>
+    </div>
+
+    <!-- Etapa 2 -->
+    <div class="stage">
+      <div class="hd"><div class="n">2</div><div><h3>Migración y modernización de Migliorisi Prensa</h3><p>El portal de Prensa hoy funciona sobre WordPress. Se migra a la misma arquitectura nativa de la plataforma principal, cuidando el posicionamiento ganado.</p></div></div>
+      <div class="bd">
+        <div class="col"><h4>Incluye</h4>
+          <ul class="checks">
+            <li>Relevamiento e inventario de contenidos</li>
+            <li>Análisis de URLs existentes</li>
+            <li>Identificación de contenido con valor SEO</li>
+            <li>Migración de artículos</li>
+            <li>Reorganización de categorías y etiquetas</li>
+            <li>Preservación de URLs relevantes</li>
+            <li>Redirecciones 301</li>
+            <li>Metadata</li>
+            <li>Schema.org para artículos</li>
+            <li>Autoría y entidades</li>
+            <li>Enlazado interno</li>
+            <li>Optimización de indexación</li>
+            <li>Sitemap y canonicalización</li>
+            <li>Optimización mobile y performance</li>
+          </ul>
+        </div>
+        <div class="col"><h4>Qué gana Migliorisi</h4>
+          <ul class="gains">
+            <li>Se conserva el posicionamiento y el contenido de valor ya construido.</li>
+            <li>Artículos con autoría y datos estructurados: más confianza para Google y para la IA.</li>
+            <li>Fin de las páginas duplicadas y de etiquetas que compiten con las notas.</li>
+            <li>Un portal más seguro, más rápido y sin mantenimiento de plugins.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="obj"><b>Enfoque:</b> la migración se realiza preservando el posicionamiento y el contenido de valor existente, en lugar de trasladar el contenido de manera automática sin analizar su estructura.</div>
+    </div>
+
+    <!-- Etapa 3 -->
+    <div class="stage">
+      <div class="hd"><div class="n">3</div><div><h3>Integración SEO + GEO</h3><p>Con la plataforma principal y Prensa modernizadas, se trabaja la relación entre ambas para que funcionen como un único ecosistema.</p></div></div>
+      <div class="diagram" style="margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0">
+        <svg viewBox="0 0 900 230" role="img" aria-label="Relación entre Migliorisi, Propiedades, Barrios, Prensa y Contenido">
+          <g stroke="var(--ink-3)" stroke-opacity=".5" stroke-width="2" fill="none">
+            <path d="M450 115 L150 60"/><path d="M450 115 L150 175"/><path d="M450 115 L750 60"/><path d="M450 115 L750 175"/>
+            <path d="M150 60 L150 175" stroke-dasharray="4 5"/><path d="M750 60 L750 175" stroke-dasharray="4 5"/>
+            <path d="M150 60 L750 60" stroke-dasharray="4 5"/><path d="M150 175 L750 175" stroke-dasharray="4 5"/>
+          </g>
+          <g font-size="15" font-weight="600" text-anchor="middle">
+            <rect x="370" y="88" width="160" height="54" rx="27" fill="var(--brand)"/><text x="450" y="120" fill="var(--paper)">Migliorisi</text>
+            <rect x="70" y="36" width="160" height="48" rx="12" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"/><text x="150" y="65" fill="var(--ink)">Propiedades</text>
+            <rect x="70" y="151" width="160" height="48" rx="12" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"/><text x="150" y="180" fill="var(--ink)">Barrios</text>
+            <rect x="670" y="36" width="160" height="48" rx="12" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"/><text x="750" y="65" fill="var(--ink)">Prensa</text>
+            <rect x="670" y="151" width="160" height="48" rx="12" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"/><text x="750" y="180" fill="var(--ink)">Contenido</text>
+          </g>
+          <g font-size="11.5" fill="var(--ink-3)" text-anchor="middle">
+            <text x="450" y="26">Relaciones semánticas: cada pieza refuerza a las demás</text>
+            <text x="450" y="218">Entity SEO · Schema.org · Interlinking · SEO local</text>
+          </g>
+        </svg>
+      </div>
+      <div class="bd">
+        <div class="col"><h4>Incluye</h4>
+          <ul class="checks">
+            <li>Entity SEO</li><li>Datos estructurados</li><li>Interlinking</li><li>SEO local</li><li>GEO</li>
+            <li>Relaciones entre propiedades y contenidos</li><li>Arquitectura semántica</li><li>Optimización de indexación</li>
+            <li>Optimización para buscadores y motores generativos</li>
+          </ul>
+        </div>
+        <div class="col"><h4>Qué gana Migliorisi</h4>
+          <ul class="gains">
+            <li>Google y los asistentes de IA reconocen a Migliorisi como <b>la referencia</b> en sus barrios.</li>
+            <li>Cada nota de Prensa impulsa el posicionamiento de las propiedades, y viceversa.</li>
+            <li>Mayor presencia en búsquedas locales (“inmobiliaria en Villa Crespo”).</li>
+            <li>Lectores que se convierten en consultas.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Etapa 4 -->
+    <div class="stage opt">
+      <div class="hd"><div class="n">4</div><div><h3>Evolución continua <span class="badge o" style="vertical-align:middle;margin-left:6px">Opcional · mensual</span></h3><p>Acompañamiento para que la plataforma siga mejorando mes a mes, en lugar de quedar desactualizada.</p></div></div>
+      <div class="bd">
+        <div class="col"><h4>Incluye</h4>
+          <ul class="checks">
+            <li>Nuevas funcionalidades</li><li>SEO y GEO</li><li>Optimización de rendimiento</li><li>UX/UI</li>
+            <li>Nuevas integraciones</li><li>Evolución del buscador</li><li>Optimización de contenidos</li><li>Mantenimiento técnico</li>
+          </ul>
+        </div>
+        <div class="col"><h4>Qué gana Migliorisi</h4>
+          <ul class="gains">
+            <li>Un equipo técnico disponible sin sumar estructura interna.</li>
+            <li>Adaptación constante a los cambios de Google y de los motores de IA.</li>
+            <li>Mejoras decididas en base a datos reales de uso.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORDPRESS -->
+<section id="wordpress">
+  <div class="wrap">
+    <div class="num">05 · Decisión tecnológica</div>
+    <h2>¿Por qué migrar Prensa de WordPress a una plataforma nativa?</h2>
+    <p class="intro">WordPress es una excelente herramienta para empezar un blog. Pero cuando el contenido pasa a ser una pieza estratégica del negocio, sus límites empiezan a costar posicionamiento, seguridad y tiempo.</p>
+    <div class="tbl" style="margin-top:22px">
+      <table class="cmp">
+        <thead><tr><th>Aspecto</th><th>WordPress actual</th><th>Plataforma nativa propuesta</th></tr></thead>
+        <tbody>
+          <tr><td><b>Seguridad</b></td><td>Depende de plugins y temas de terceros; es uno de los blancos más frecuentes de ataques automatizados.</td><td>Superficie de ataque mínima, sin plugins de terceros ni panel expuesto.</td></tr>
+          <tr><td><b>Velocidad</b></td><td>Carga código de temas y plugins que la página no usa.</td><td>Solo el código necesario; páginas livianas y rápidas, en especial en celulares.</td></tr>
+          <tr><td><b>SEO y datos estructurados</b></td><td>Resuelto con plugins genéricos, con control limitado.</td><td>SEO y Schema.org programados a medida para cada tipo de contenido.</td></tr>
+          <tr><td><b>Integración con propiedades</b></td><td>Sistema separado: no puede mostrar propiedades ni barrios en las notas.</td><td>Misma base: notas, barrios y propiedades conectados de forma automática.</td></tr>
+          <tr><td><b>Mantenimiento</b></td><td>Actualizaciones constantes de núcleo, tema y plugins, con riesgo de incompatibilidades.</td><td>Una única plataforma para mantener y evolucionar.</td></tr>
+          <tr><td><b>Dominio</b></td><td>Subdominio separado: la autoridad se divide.</td><td>Estructura unificada que suma autoridad a la marca.</td></tr>
+          <tr><td><b>Carga de notas</b></td><td>Editor conocido.</td><td>Editor simple y amigable para el equipo; no requiere conocimientos técnicos.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout ok"><p><b>Lo importante:</b> la migración no es “copiar y pegar”. Se analiza cada URL, se conservan las que tienen posicionamiento y se redirigen correctamente (301) las demás, para que el trabajo hecho hasta hoy no se pierda sino que se potencie.</p></div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="num">06 · Beneficios</div>
+    <h2>Lo que Migliorisi obtiene al finalizar</h2>
+    <p class="intro">La modernización es un trabajo profundo. Justamente por eso, su resultado no es un “sitio nuevo”, sino un activo que trabaja para la inmobiliaria todos los días.</p>
+    <div class="benefits">
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><b>Más tráfico orgánico</b><span>Páginas por barrio, tipología y operación que capturan búsquedas reales, sin pagar por cada visita.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div><b>Presencia en respuestas de IA</b><span>Información estructurada y citable para que ChatGPT, Gemini o Google recomienden a Migliorisi.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><b>Consultas propias</b><span>Menos dependencia de portales: el cliente consulta directamente a Migliorisi, sin competencia al lado.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><b>Experiencia móvil superior</b><span>Rápida, clara y con WhatsApp a un toque. Menos abandono, más contactos.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg></div><b>Seguridad y estabilidad</b><span>Sin plugins vulnerables ni sorpresas por actualizaciones.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.2 12.5 7 22l5-3 5 3-1.2-9.5"/></svg></div><b>Autoridad de marca</b><span>70 años de trayectoria traducidos en señales de confianza que buscadores e IA valoran.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M4 15l4-4 4 4 8-8"/></svg></div><b>Contenido que convierte</b><span>Cada nota de Prensa lleva a propiedades y barrios. El lector se transforma en cliente.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><b>Datos propios</b><span>Información sobre qué buscan los clientes, en qué barrios y a qué precio, para decidir mejor.</span></div>
+      <div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div><b>Preparada para crecer</b><span>Nuevas funciones e integraciones sin tener que rehacer el sitio.</span></div>
+    </div>
+
+    <div class="ba">
+      <div class="card"><h3><span class="badge a">Hoy</span></h3>
+        <ul>
+          <li>Dos sitios separados que no se potencian entre sí.</li>
+          <li>Búsquedas por barrio capturadas mayormente por portales.</li>
+          <li>Metadata genérica y datos poco estructurados.</li>
+          <li>Prensa en WordPress, con mantenimiento de plugins.</li>
+          <li>Poca visibilidad en respuestas de IA.</li>
+        </ul>
+      </div>
+      <div class="card after"><h3><span class="badge o">Después</span></h3>
+        <ul>
+          <li>Un ecosistema: propiedades, barrios y Prensa conectados.</li>
+          <li>Páginas propias para cada barrio y tipo de búsqueda.</li>
+          <li>SEO y Schema.org programados en cada página.</li>
+          <li>Plataforma nativa, rápida y segura.</li>
+          <li>Migliorisi como fuente citable para buscadores e IA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSION -->
+<section id="inversion">
+  <div class="wrap">
+    <div class="num">07 · Inversión</div>
+    <h2>Una inversión en etapas, a su ritmo</h2>
+    <p class="intro">No es un gasto en un sitio web: es la construcción de un canal propio de captación que trabaja las 24 horas y cuyo valor crece con el tiempo. Por eso la propuesta se organiza en etapas independientes, que pueden contratarse de forma progresiva según las prioridades de Migliorisi.</p>
+
+    <div class="invest">
+      <div class="inv"><span class="pill">Punto de partida</span><span class="st">Etapa 1</span><h3>Análisis, arquitectura y modernización de plataforma</h3><div class="price">$3.500.000</div><span class="sub">Inversión por etapa</span></div>
+      <div class="inv"><span class="st">Etapa 2</span><h3>Migración y modernización de Migliorisi Prensa</h3><div class="price">$2.000.000</div><span class="sub">Inversión por etapa</span></div>
+      <div class="inv"><span class="st">Etapa 3</span><h3>Integración SEO + GEO</h3><div class="price">$1.500.000</div><span class="sub">Inversión por etapa</span></div>
+      <div class="inv opt"><span class="st">Etapa 4 · Opcional</span><h3>Evolución continua</h3><div class="price">$500.000 <small>/ mes</small></div><span class="sub">Sin obligación de contratación</span></div>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:14px">Valores expresados en pesos argentinos. Las etapas son independientes y pueden contratarse progresivamente. Cada etapa cuenta con un alcance e inversión definidos.</p>
+
+    <div class="value-bar">
+      <div class="card"><h3>Un activo, no un alquiler</h3><p>La plataforma queda para Migliorisi. A diferencia de un portal o una suscripción, cada peso invertido construye valor propio.</p></div>
+      <div class="card"><h3>Retorno acumulativo</h3><p>El posicionamiento orgánico no se apaga cuando termina un pago: sigue generando visitas y consultas mes a mes.</p></div>
+      <div class="card"><h3>En perspectiva</h3><p>En el mercado inmobiliario, unas pocas operaciones adicionales originadas en el canal propio pueden compensar la inversión.</p></div>
+    </div>
+    <div class="callout"><p><b>Avance sin riesgo:</b> cada etapa tiene un entregable concreto y visible. Migliorisi puede evaluar los resultados de una etapa antes de decidir la siguiente.</p></div>
+  </div>
+</section>
+
+<!-- PASOS -->
+<section id="pasos" style="border-bottom:0">
+  <div class="wrap">
+    <div class="num">08 · Próximos pasos</div>
+    <h2>Cómo seguimos</h2>
+    <ol class="next">
+      <li><div><b>Reunión de revisión.</b> Recorremos juntos esta propuesta y el prototipo, y ajustamos prioridades.</div></li>
+      <li><div><b>Definición de etapas.</b> Migliorisi elige con qué etapa comenzar (recomendamos la Etapa 1 como base).</div></li>
+      <li><div><b>Accesos y relevamiento.</b> Coordinamos accesos a la plataforma actual, Prensa y herramientas de medición.</div></li>
+      <li><div><b>Inicio del proyecto.</b> Comenzamos la auditoría y compartimos avances periódicos.</div></li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Propuesta confidencial preparada para Migliorisi Propiedades · Septiembre 2026. El prototipo incluido es una visualización de diseño: propiedades, precios y estadísticas son ilustrativos.</div>
+</footer>
+
+<script>
+(function(){
+  var f=document.getElementById('pframe'), addr=document.getElementById('addr');
+  var paths={"inicio":"migliorisi.com.ar","buscar/venta/villa-crespo":"migliorisi.com.ar/venta/villa-crespo","ficha/1":"migliorisi.com.ar/venta/villa-crespo/departamento-3-ambientes-julian-alvarez-800","barrio/villa-crespo":"migliorisi.com.ar/barrios/villa-crespo","articulo/precio-m2-villa-crespo":"migliorisi.com.ar/prensa/precio-m2-villa-crespo"};
+  document.querySelectorAll('#ptabs button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#ptabs button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      try{ f.contentWindow.location.hash=b.dataset.h; }catch(e){ f.src='prototipo.html#'+b.dataset.h; }
+      addr.textContent=paths[b.dataset.h]||'migliorisi.com.ar';
+    });
+  });
+})();
+</script>
+</body>
+</html>
